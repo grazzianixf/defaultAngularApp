@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 
 import { HeaderComponent } from './index';
 import { HeaderRoutingModule } from './header-routing.module';
 
 @NgModule({
   imports: [
-    HeaderRoutingModule,
+    HeaderRoutingModule, CommonModule
   ],
   declarations: [
     HeaderComponent,
