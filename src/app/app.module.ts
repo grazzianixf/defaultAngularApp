@@ -2,14 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { LayoutModule } from './layout/layout.module';
+import { AuthService } from './providers/auth.service';
 
 import { AngularFireModule } from 'angularfire2';
-
-// New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoginComponent } from './login/login.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDnRblLt04UPvU9lvz8QfEU4HGKfPJd-tY",
@@ -19,19 +22,28 @@ export const firebaseConfig = {
   messagingSenderId: "319435978367"
 };
 
+const routes: Routes = [
+  { path: '', component: HomePageComponent },
+  { path: 'login', component: LoginComponent }
+];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule    
+    AngularFireAuthModule,
+    LayoutModule 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

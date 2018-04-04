@@ -1,3 +1,4 @@
+<!-- 
 <div class="row columns">
   <button (click)="login()" *ngIf="!(user | async)?.uid">Login</button>
   <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
@@ -7,3 +8,14 @@
       <p *ngFor="let item of items | async">{{item.message}}</p>
   </div>
 </div>
+-->
+
+<header>
+  <router-outlet name="header"></router-outlet>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <router-outlet name="footer"></router-outlet>
+</footer>
