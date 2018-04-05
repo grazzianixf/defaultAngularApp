@@ -17,9 +17,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
+  login(email, password) {
     console.log('LoginComponent.login');
-    return this.authService.loginWithEmailPassword();
+    return this.authService.loginWithEmailPassword(email, password);
   }
 
+  onSubmit(formData) {
+    if(formData.valid) {
+      console.log(formData.value);
+
+      return this.login(formData.value.email, formData.value.password);
+    }
+  }
 }

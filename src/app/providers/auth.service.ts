@@ -9,8 +9,8 @@ export class AuthService {
     console.log('AuthService constructor');
   }
 
-  loginWithEmailPassword() {
-    this.afAuth.auth.signInWithEmailAndPassword("grazzianixf@gmail.com", "testes");
+  loginWithEmailPassword(email, password) {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   logout() {
