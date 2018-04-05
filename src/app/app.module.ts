@@ -13,7 +13,6 @@ import { AboutComponent } from './about/about.component';
 import { LayoutModule } from './layout/layout.module';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 const routes: Routes = [
@@ -35,7 +34,6 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     AngularFireAuthModule,
     LayoutModule
   ],
