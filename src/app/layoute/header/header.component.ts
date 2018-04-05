@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../providers/auth.service'
 
 @Component({
-  selector: 'app-headere',
-  templateUrl: './headere.component.html',
-  styleUrls: ['./headere.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class HeadereComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   @Input() isLoggedIn: Boolean;
   @Input() userDisplayName: String;
