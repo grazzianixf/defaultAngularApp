@@ -10,6 +10,7 @@ import { AuthService } from './providers/auth.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { LayouteModule } from './layoute/layoute.module';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -45,7 +46,8 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    LayoutModule 
+    LayoutModule,
+    LayouteModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

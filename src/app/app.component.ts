@@ -14,9 +14,10 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   private isLoggedIn: Boolean;
-  private user_displayName: String;
-  private user_email: String;
+  private userDisplayName: String;
+  private userEmail: String;  
 
   constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     console.log('AppComponent constructor');
@@ -25,17 +26,21 @@ export class AppComponent {
       (auth) => {
         if (auth == null) {
           console.log("Logged out");
+
           this.isLoggedIn = false;
-          this.user_displayName = '';
-          this.user_email = '';
+          this.userDisplayName = '';
+          this.userEmail = '';
 
           this.router.navigate(['login']);
         } else {
-          this.isLoggedIn = true;
-          this.user_displayName = auth.displayName
-          this.user_email = auth.email
           console.log("Logged in");
           console.log(auth);
+
+          this.isLoggedIn = true;
+          this.userDisplayName = auth.displayName;
+          this.userEmail = auth.email;   
+          
+          console.log(this.userDisplayName + "(" + this.userEmail + ")");
 
           if (activatedRoute.snapshot.firstChild.url.length == 0
                 || activatedRoute.snapshot.firstChild.url[0].path == "login") {
