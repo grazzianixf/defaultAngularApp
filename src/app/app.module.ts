@@ -7,12 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { AuthService } from './providers/auth.service';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoginComponent } from './login/login.component';
+import { AboutComponent } from './about/about.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { HomePageComponent } from './home-page/home-page.component';
-import { LoginComponent } from './login/login.component';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDnRblLt04UPvU9lvz8QfEU4HGKfPJd-tY",
@@ -24,14 +26,16 @@ export const firebaseConfig = {
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LoginComponent
+    LoginComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from './providers/auth.service';
 
@@ -14,44 +14,11 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  /*title = 'app';
-
-  user: Observable<firebase.User>;
-  items: AngularFireList<Message>;
-  msgVal: string = '';
-
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.items = af.list<Message>('/messages');
-
-    this.user = this.afAuth.authState;
-    console.log('FirebaseAuth');
-    console.log(this.afAuth.auth);
-    console.log('currentUser');
-    console.log(this.afAuth.auth.currentUser);    
-  }  
-
-  login() {
-    this.afAuth.auth.signInWithEmailAndPassword("grazzianixf@gmail.com", "testes");
-    this.afAuth.auth.onAuthStateChanged(function(algo) {
-      console.log('mudança');
-      console.log(algo);
-    });
-  }
-
-  logout() {
-      this.afAuth.auth.signOut();
-  }
-
-  Send(desc: string) {
-      this.items.push({ message: desc});
-      this.msgVal = '';
-  }*/  
-
   private isLoggedIn: Boolean;
   private user_displayName: String;
   private user_email: String;
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     console.log('AppComponent constructor');
 
     this.authService.afAuth.authState.subscribe(
@@ -61,6 +28,7 @@ export class AppComponent {
           this.isLoggedIn = false;
           this.user_displayName = '';
           this.user_email = '';
+
           this.router.navigate(['login']);
         } else {
           this.isLoggedIn = true;
@@ -68,8 +36,14 @@ export class AppComponent {
           this.user_email = auth.email
           console.log("Logged in");
           console.log(auth);
-          this.router.navigate(['']);
+
+          if (activatedRoute.snapshot.firstChild.url.length == 0
+                || activatedRoute.snapshot.firstChild.url[0].path == "login") {
+            this.router.navigate(['']);
+          }
+          
         }
+
       }
     );
   }  

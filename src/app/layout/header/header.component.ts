@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
           this.isLoggedIn = false;
           this.user_displayName = '';
           this.user_email = '';
-          this.router.navigate(['login']);
         } else {
           this.isLoggedIn = true;
           this.user_displayName = auth.displayName
