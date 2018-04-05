@@ -11,6 +11,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { LayoutModule } from './layout/layout.module';
+import { FirebaseModule } from './firebase/firebase.module';
+import { TodoComponent } from './todo/todo.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -18,7 +20,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'about', component: AboutComponent },
+  { path: 'todo', component: TodoComponent }
 ];
 
 @NgModule({
@@ -26,15 +29,15 @@ const routes: Routes = [
     AppComponent,
     HomePageComponent,
     LoginComponent,
-    AboutComponent
+    AboutComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
+    FirebaseModule,
     LayoutModule
   ],
   providers: [AuthService],

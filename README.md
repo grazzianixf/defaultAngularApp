@@ -3,8 +3,11 @@
 ## TODO
 
 * Material Design
+* Implementar menu
 * Interação de Mensagens
-* Consultar algo no Firebase: fazer uma TODO list
+* Implementar Services por componente para consultar dados no Firebase
 * Implementar modulo firebase
 * Implementar modulo autenticação
+* Implementar uso de models
 * Ajustar README
+* Extrair rotas
