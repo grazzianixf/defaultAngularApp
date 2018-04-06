@@ -13,6 +13,7 @@ import { AboutComponent } from './about/about.component';
 import { LayoutModule } from './layout/layout.module';
 import { FirebaseModule } from './firebase/firebase.module';
 import { TodoComponent } from './todo/todo.component';
+import { UiModule } from './ui/ui.module';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes),
     FirebaseModule,
-    LayoutModule
+    LayoutModule,
+    UiModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
