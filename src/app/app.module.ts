@@ -14,9 +14,6 @@ import { LayoutModule } from './layout/layout.module';
 import { FirebaseModule } from './firebase/firebase.module';
 import { TodoComponent } from './todo/todo.component';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
