@@ -22,6 +22,18 @@ export class HeaderComponent implements OnInit {
     
   }
 
+  home() {
+    this.router.navigate(['/']);
+  }
+
+  todo() {
+    this.router.navigate(['/todo']);
+  }  
+
+  about() {
+    this.router.navigate(['/about']);
+  }  
+
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);

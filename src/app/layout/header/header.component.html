@@ -1,16 +1,29 @@
-<!--
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+</button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
+    <button mat-menu-item (click)="home()">
+        <mat-icon>dialpad</mat-icon>
+        <span>Home</span>
+    </button>
+    <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+    </button>
+    <button mat-menu-item (click)="todo()">
+        <mat-icon>notifications_off</mat-icon>
+        <span>TODOs</span>
+    </button>
+    <button mat-menu-item (click)="about()">
+        <mat-icon>notifications_off</mat-icon>
+        <span>About</span>
+    </button>    
 </mat-menu>
--->
 
-<a href="/">home</a> | <a href="/todo">TODOs</a> | <a href="/about">about</a>
 <div *ngIf="isLoggedIn" style="text-align: right">
     <p class="navbar-text navbar-right">Logged In: {{userDisplayName}} ({{userEmail}})
         <button class="btn btn-default" (click)="logout()">Logout</button>
-    <p>
+        <p>
 </div>
 <div *ngIf="!isLoggedIn" style="text-align: right">
     <p class="navbar-text navbar-right">Logged Out</p>

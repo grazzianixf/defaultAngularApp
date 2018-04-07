@@ -15,6 +15,10 @@ import { FirebaseModule } from './firebase/firebase.module';
 import { TodoComponent } from './todo/todo.component';
 import { UiModule } from './ui/ui.module';
 
+import { MatMenuModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -37,7 +41,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FirebaseModule,
     LayoutModule,
-    UiModule
+    UiModule,
+    MatMenuModule, NoopAnimationsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { MaterialDesignModule } from './material-design/material-design.module';
   imports: [
     CommonModule, MaterialDesignModule
   ],
-  declarations: []
+  declarations: [],
+  exports: [ MaterialDesignModule ]
 })
 export class UiModule { }

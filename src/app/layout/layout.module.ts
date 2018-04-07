@@ -7,7 +7,7 @@ import { UiModule } from './../ui/ui.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule, UiModule
   ],
   declarations: [HeaderComponent, FooterComponent],
   exports : [ HeaderComponent, FooterComponent ]

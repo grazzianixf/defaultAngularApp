@@ -3,7 +3,7 @@
 ## TODO
 
 * Material Design
-* Implementar menu
+* Componentizar menu
 * Interação de Mensagens
 * Implementar Services por componente para consultar dados no Firebase
 * Implementar modulo autenticação
