@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatMenuModule, MatIconModule } from '@angular/material';
+import { MatMenuModule, MatIconModule, MatToolbarModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -11,6 +11,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     NoopAnimationsModule
   ],
   declarations: [],
-  exports: [ MatMenuModule, MatIconModule ]
+  exports: [ MatMenuModule, MatIconModule, MatToolbarModule ]
 })
 export class MaterialDesignModule { }

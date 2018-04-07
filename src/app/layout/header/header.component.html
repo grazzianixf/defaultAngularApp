@@ -1,6 +1,17 @@
-<button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-</button>
+<mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <div *ngIf="isLoggedIn" style="text-align: right">
+        <p class="navbar-text navbar-right">Logged In: {{userDisplayName}} ({{userEmail}})
+            <button class="btn btn-default" (click)="logout()">Logout</button>
+            <p>
+    </div>
+    <div *ngIf="!isLoggedIn" style="text-align: right">
+        <p class="navbar-text navbar-right">Logged Out</p>
+    </div>    
+</mat-toolbar>
 <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="home()">
         <mat-icon>dialpad</mat-icon>
@@ -17,14 +28,5 @@
     <button mat-menu-item (click)="about()">
         <mat-icon>notifications_off</mat-icon>
         <span>About</span>
-    </button>    
+    </button>
 </mat-menu>
-
-<div *ngIf="isLoggedIn" style="text-align: right">
-    <p class="navbar-text navbar-right">Logged In: {{userDisplayName}} ({{userEmail}})
-        <button class="btn btn-default" (click)="logout()">Logout</button>
-        <p>
-</div>
-<div *ngIf="!isLoggedIn" style="text-align: right">
-    <p class="navbar-text navbar-right">Logged Out</p>
-</div>
