@@ -2,7 +2,8 @@
 
 ## TODO
 
-* Material Design
+* Material Design 
+** Fixar header e footer
 * Componentizar menu
 * Interação de Mensagens
 * Implementar Services por componente para consultar dados no Firebase
