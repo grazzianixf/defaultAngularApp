@@ -1,17 +1,23 @@
 <mat-toolbar>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-
-    <div *ngIf="isLoggedIn" style="text-align: right">
-        <p class="navbar-text navbar-right">Logged In: {{userDisplayName}} ({{userEmail}})
-            <button class="btn btn-default" (click)="logout()">Logout</button>
-            <p>
-    </div>
-    <div *ngIf="!isLoggedIn" style="text-align: right">
-        <p class="navbar-text navbar-right">Logged Out</p>
-    </div>    
+    <mat-toolbar-row>
+        <span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </span>
+        <span class="example-spacer"></span>
+            <p *ngIf="isLoggedIn">
+                <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
+                    verified_user
+                </mat-icon>
+                <button class="btn btn-default" (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                </button>
+            </p>
+            <p *ngIf="!isLoggedIn">Logged Out</p>   
+    </mat-toolbar-row>
 </mat-toolbar>
+
 <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="home()">
         <mat-icon>dialpad</mat-icon>
