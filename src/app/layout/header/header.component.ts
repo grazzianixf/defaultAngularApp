@@ -10,16 +10,43 @@ import { AuthService } from '../../providers/auth.service'
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() isLoggedIn: Boolean;
-  @Input() userDisplayName: String;
-  @Input() userEmail: String;
+  isLoggedIn: Boolean;
+  userDisplayName: String;
+  userEmail: String;
 
   constructor(public authService: AuthService, private router: Router) {
+    console.log('HeaderComponent.constructor');
 
+    this.executeLogInOutProcedures();
+
+    this.authService.getLoggedInOut.subscribe(
+      (status) => {
+        console.log('status: ' + status);
+        this.executeLogInOutProcedures();
+      }
+    );
   }   
 
+  executeLogInOutProcedures() {
+    console.log('HeaderComponent.executeLogInOutProcedures');
+
+    if (this.authService.isAuthenticated()) {
+      this.isLoggedIn = true;
+
+      let user = this.authService.getCurrentUser();
+
+      this.userDisplayName = user.name;
+      this.userEmail = user.email;
+    } else {
+      this.isLoggedIn = false;
+      this.userDisplayName = '';
+      this.userEmail = '';
+    }    
+    console.log('this.isLoggedIn: ' + this.isLoggedIn);
+  }
+
   ngOnInit() {
-    
+    console.log('HeaderComponent.nbOnInit');
   }
 
   home() {
@@ -35,8 +62,12 @@ export class HeaderComponent implements OnInit {
   }  
 
   logout() {
+    this.isLoggedIn = false;
+    this.userDisplayName = '';
+    this.userEmail = '';
+
     this.authService.logout();
     this.router.navigate(['login']);
-  }  
+  }
 
 }

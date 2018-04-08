@@ -16,11 +16,10 @@ export class AppComponent {
 
   constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     console.log('AppComponent constructor');
-    console.log('isAuthenticated');
-    console.log(this.authService.isAuthenticated());    
-    console.log('current user');
-    console.log(this.authService.getCurrentUser());
+    console.log('isAuthenticated: ' + this.authService.isAuthenticated());
+    console.log('current user: ' + this.authService.getCurrentUser());
 
+    /*
     if (this.authService.isAuthenticated()) {
       this.authService.afAuth.authState.subscribe(
         (auth) => {
@@ -46,8 +45,10 @@ export class AppComponent {
     } else {
       this.executeLoggedOutProcedures();
     }
-  }  
+    */
+  }
   
+  /*
   executeLoggedOutProcedures() {
     console.log("Logged out");
   
@@ -59,4 +60,5 @@ export class AppComponent {
 
     this.router.navigate(['login']);
   }
+  */
 }

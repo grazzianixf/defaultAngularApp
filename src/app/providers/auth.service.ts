@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -29,30 +29,46 @@ export class AuthService {
             (idToken) => {
               //let idTokenJwt = this.getJwtHelper().urlBase64Decode(idToken);
               localStorage.setItem("idToken", idToken);
+              this.getLoggedInOut.emit('login');
             }
           );
         }
       }
     );
   }
+  
+  private executeLogoutProcedures() {
+    localStorage.removeItem(this.LOCAL_STORAGE_TOKEN_NAME);
+  }
 
   public logout() {
-    return this.afAuth.auth.signOut();
+    console.log('logout');
+
+    this.executeLogoutProcedures();
+
+    let result = this.afAuth.auth.signOut();
+    this.getLoggedInOut.emit('logout');
+
+    return result;
   }  
 
   public isAuthenticated(): boolean {
+    console.log('AuthService.isAuthenticated');
     this.afAuth.authState.subscribe(
       (auth) => {
         if (auth == null) {
-          this.executeLoggedOutProcedures();
+          this.executeLogoutProcedures();
         }
       }
     );
 
-    return ! this.getJwtHelper().isTokenExpired(this.getTokenFromLocalStorage());
+    let isTokenExpired = this.getJwtHelper().isTokenExpired(this.getTokenFromLocalStorage());
+    console.log('isTokenExpired: ' + isTokenExpired);
+
+    return ! isTokenExpired;
   } 
 
-  getCurrentUser() {
+  public getCurrentUser() {
     if (this.isAuthenticated()) {
       
       let tokenObject = this.getJwtHelper().decodeToken(this.getTokenFromLocalStorage());
@@ -70,17 +86,20 @@ export class AuthService {
     return null;
   }
 
-  private executeLoggedOutProcedures() {
-    localStorage.removeItem(this.LOCAL_STORAGE_TOKEN_NAME);
-  }
 
-  getJwtHelper() : JwtHelperService {
+  public getJwtHelper() : JwtHelperService {
     let jwtHelperService: JwtHelperService = new JwtHelperService();
 
     return jwtHelperService;
   }
 
   private getTokenFromLocalStorage() {
-    return localStorage.getItem(this.LOCAL_STORAGE_TOKEN_NAME);
+    console.log('AuthService.getTokenFromLocalStorage');
+
+    let token = localStorage.getItem(this.LOCAL_STORAGE_TOKEN_NAME);
+
+    return token;
   }
+
+  @Output() public getLoggedInOut: EventEmitter<any> = new EventEmitter();
 }

@@ -19,13 +19,20 @@ export class LoginComponent implements OnInit {
 
   login(email, password) {
     console.log('LoginComponent.login');
-    return this.authService.loginWithEmailPassword(email, password);
+    this.authService.loginWithEmailPassword(email, password);
+    console.log('feito o login');
+
+    this.authService.afAuth.authState.subscribe(
+      (auth) => {
+        if (auth != null) {
+          this.router.navigate(['/']);
+        }
+      }
+    );
   }
 
   onSubmit(formData) {
     if(formData.valid) {
-      console.log(formData.value);
-
       return this.login(formData.value.email, formData.value.password);
     }
   }

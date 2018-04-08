@@ -5,8 +5,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 
-import { AppComponent } from './app.component';
 import { AuthService } from './providers/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+
+import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
@@ -20,10 +22,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: HomePageComponent, canActivate : [AuthGuardService] },
   { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'todo', component: TodoComponent }
+  { path: 'todo', component: TodoComponent, canActivate : [AuthGuardService] }
 ];
 
 @NgModule({
@@ -44,7 +46,7 @@ const routes: Routes = [
     UiModule,
     MatMenuModule, NoopAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
