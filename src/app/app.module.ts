@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 
 import { AuthService } from './providers/auth.service';
@@ -19,15 +18,8 @@ import { UiModule } from './ui/ui.module';
 
 import { MatMenuModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from './/app-routing.module';
-
-
-const routes: Routes = [
-  { path: '', component: HomePageComponent, canActivate : [AuthGuardService] },
-  { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'todo', component: TodoComponent, canActivate : [AuthGuardService] }
-];
 
 @NgModule({
   declarations: [
@@ -41,7 +33,6 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
     FirebaseModule,
     LayoutModule,
     UiModule,
