@@ -16,4 +16,5 @@
   - roles
 * LOGIN
   - desabilitar Campos se logado
-  - remover navigate qdo entrar na tela e tiver logado. Mostrar dados do usuario logado
+  - remover navigate qdo entrar na tela e tiver logado
+  - mostrar dados do usuario se logado
