@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { LayoutModule } from './layout/layout.module';
 import { FirebaseModule } from './firebase/firebase.module';
-import { TodoComponent } from './todo/todo.component';
+import { TodoModule } from './todo/todo.module';
 import { UiModule } from './ui/ui.module';
 
 import { MatMenuModule } from '@angular/material';
@@ -26,8 +26,7 @@ import { AppRoutingModule } from './/app-routing.module';
     AppComponent,
     HomePageComponent,
     LoginComponent,
-    AboutComponent,
-    TodoComponent
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +34,7 @@ import { AppRoutingModule } from './/app-routing.module';
     HttpModule,
     FirebaseModule,
     LayoutModule,
+    TodoModule,
     UiModule,
     MatMenuModule, NoopAnimationsModule, 
     AppRoutingModule
