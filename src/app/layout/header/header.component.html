@@ -7,17 +7,21 @@
         </span>
         <span class="example-spacer"></span>
         <p *ngIf="isLoggedIn">
-            <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
-                account_box
-            </mat-icon>
+            <button (click)="login()">
+                <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
+                    account_box
+                </mat-icon>
+            </button>
             <button class="btn btn-default" (click)="logout()">
                 <mat-icon>power_settings_new</mat-icon>
             </button>
         </p>
         <p *ngIf="!isLoggedIn">
-            <mat-icon title="Logged out. Click to Login.">
-                account_circle
-            </mat-icon>
+            <button (click)="login()">
+                <mat-icon title="Logged out. Click to Login.">
+                    account_circle
+                </mat-icon>
+            </button>
         </p>
     </mat-toolbar-row>
 </mat-toolbar>

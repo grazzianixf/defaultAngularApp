@@ -1,9 +1,16 @@
-<div class="form-container">
+<div class="form-container" *ngIf="!isLoggedIn" style="text-align: center">
     Custom Login
 
     <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-      <input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>
-      <input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
+      <p><input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required></p>
+      <p><input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required></p>
       <button type="submit" [disabled]="!formData.valid" class="basic-btn">Log in</button>
   </form>
+</div>
+<div *ngIf="isLoggedIn" style="text-align: center">
+  Authenticated
+  <div *ngIf="user">
+    <p><img src="{{user.picture}}"></p>
+    <p>{{user.name}} ({{user.email}})</p>
+  </div>
 </div>

@@ -9,9 +9,4 @@
 * Implementar uso de models
 * README em layout padrão
 * AUTH
-  * Mover AuthService para o /auth
   * roles
-* LOGIN
-  * desabilitar Campos se logado
-  * remover navigate qdo entrar na tela e tiver logado
-  * mostrar dados do usuario se logado

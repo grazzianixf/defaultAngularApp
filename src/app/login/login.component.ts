@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../auth/auth.service';
+import { AuthService, User } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +10,31 @@ import { AuthService } from '../auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  isLoggedIn : boolean = false;
+  user : User = null;
+
   constructor(public authService: AuthService, private router:Router) {
     console.log('LoginComponent.constructor');
+
+    this.isLoggedIn = this.authService.isAuthenticated();
+
+    if (this.isLoggedIn) {
+      this.user = this.authService.getCurrentUser();
+    } else {
+      this.user = null;
+    }
+
+    this.authService.getLoggedInOut.subscribe(
+      (status) => {
+        this.isLoggedIn = this.authService.isAuthenticated();
+
+        if (this.isLoggedIn) {
+          this.user = this.authService.getCurrentUser();
+        } else {
+          this.user = null;
+        }        
+      }
+    );
   }
 
   ngOnInit() {
