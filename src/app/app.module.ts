@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { environment } from '../environments/environment';
 
-import { AuthService } from './providers/auth.service';
+import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
 
 import { AppComponent } from './app.component';
