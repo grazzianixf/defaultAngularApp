@@ -2,3 +2,8 @@ node_modules/
 dist/
 src/environments/firebase.config.ts
 .firebaserc
+functions/
+database.rules.json
+firebase.json
+firestore.indexes.json
+firestore.rules
