@@ -19,6 +19,7 @@ import { UiModule } from './ui/ui.module';
 
 import { MatMenuModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 const routes: Routes = [
@@ -44,7 +45,8 @@ const routes: Routes = [
     FirebaseModule,
     LayoutModule,
     UiModule,
-    MatMenuModule, NoopAnimationsModule
+    MatMenuModule, NoopAnimationsModule, 
+    AppRoutingModule
   ],
   providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
