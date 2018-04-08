@@ -6,15 +6,19 @@
             </button>
         </span>
         <span class="example-spacer"></span>
-            <p *ngIf="isLoggedIn">
-                <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
-                    verified_user
-                </mat-icon>
-                <button class="btn btn-default" (click)="logout()">
-                    <mat-icon>exit_to_app</mat-icon>
-                </button>
-            </p>
-            <p *ngIf="!isLoggedIn">Logged Out</p>   
+        <p *ngIf="isLoggedIn">
+            <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
+                account_box
+            </mat-icon>
+            <button class="btn btn-default" (click)="logout()">
+                <mat-icon>power_settings_new</mat-icon>
+            </button>
+        </p>
+        <p *ngIf="!isLoggedIn">
+            <mat-icon title="Logged out. Click to Login.">
+                account_circle
+            </mat-icon>
+        </p>
     </mat-toolbar-row>
 </mat-toolbar>
 

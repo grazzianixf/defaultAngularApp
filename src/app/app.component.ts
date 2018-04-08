@@ -16,35 +16,47 @@ export class AppComponent {
 
   constructor(public authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     console.log('AppComponent constructor');
+    console.log('isAuthenticated');
+    console.log(this.authService.isAuthenticated());    
+    console.log('current user');
+    console.log(this.authService.getCurrentUser());
 
-    this.authService.afAuth.authState.subscribe(
-      (auth) => {
-        if (auth == null) {
-          console.log("Logged out");
-
-          this.isLoggedIn = false;
-          this.userDisplayName = '';
-          this.userEmail = '';
-
-          this.router.navigate(['login']);
-        } else {
-          console.log("Logged in");
-          console.log(auth);
-
-          this.isLoggedIn = true;
-          this.userDisplayName = auth.displayName;
-          this.userEmail = auth.email;   
-          
-          console.log(this.userDisplayName + "(" + this.userEmail + ")");
-
-          if (activatedRoute.snapshot.firstChild.url.length == 0
-                || activatedRoute.snapshot.firstChild.url[0].path == "login") {
-            this.router.navigate(['']);
-          }
-          
+    if (this.authService.isAuthenticated()) {
+      this.authService.afAuth.authState.subscribe(
+        (auth) => {
+          if (auth == null) {
+            this.executeLoggedOutProcedures();
+          } else {
+            console.log("Logged in");
+            console.log(auth);
+      
+            this.isLoggedIn = true;
+            this.userDisplayName = auth.displayName;
+            this.userEmail = auth.email;   
+            
+            console.log(this.userDisplayName + "(" + this.userEmail + ")");
+      
+            if (activatedRoute.snapshot.firstChild.url.length == 0
+                  || activatedRoute.snapshot.firstChild.url[0].path == "login") {
+              this.router.navigate(['']);
+            }
+          }  
         }
-
-      }
-    );
+      );      
+    } else {
+      this.executeLoggedOutProcedures();
+    }
   }  
+  
+  executeLoggedOutProcedures() {
+    console.log("Logged out");
+  
+    this.isLoggedIn = false;
+    this.userDisplayName = '';
+    this.userEmail = '';
+  
+    this.authService.executeLoggedOutProcedures();
+
+    this.router.navigate(['login']);
+  }
 }
