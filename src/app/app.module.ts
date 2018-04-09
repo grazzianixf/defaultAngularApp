@@ -15,6 +15,7 @@ import { LayoutModule } from './layout/layout.module';
 import { FirebaseModule } from './firebase/firebase.module';
 import { TodoModule } from './todo/todo.module';
 import { UiModule } from './ui/ui.module';
+import { AdminModule } from './admin/admin.module';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -35,7 +36,9 @@ import { AppRoutingModule } from './/app-routing.module';
     LayoutModule,
     TodoModule,
     UiModule,
-    NoopAnimationsModule, 
+    AdminModule,
+
+    NoopAnimationsModule,
     AppRoutingModule
   ],
   providers: [AuthService, AuthGuardService],
