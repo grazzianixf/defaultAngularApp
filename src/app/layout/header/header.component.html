@@ -1,11 +1,11 @@
-<mat-toolbar>
+<mat-toolbar class="header-position">
     <mat-toolbar-row>
         <span>
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
             </button>
         </span>
-        <span class="example-spacer"></span>
+        <span class="example-spacer">HEADER</span>
         <p *ngIf="isLoggedIn">
             <button (click)="login()">
                 <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
