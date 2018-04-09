@@ -8,10 +8,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
 
-  private isLoggedIn: Boolean;
-  private userDisplayName: String;
-  private userEmail: String;
-
   constructor(private activatedRoute: ActivatedRoute) {
     console.log('AppComponent constructor');
 

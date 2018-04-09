@@ -20,21 +20,23 @@ export class AuthService {
   }
 
   public loginWithEmailPassword(email, password) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, password);
-    
-    this.afAuth.authState.subscribe(
-      (auth) => {
-        if (auth) {
-          auth.getIdToken().then(
-            (idToken) => {
-              //let idTokenJwt = this.getJwtHelper().urlBase64Decode(idToken);
-              localStorage.setItem("idToken", idToken);
-              this.getLoggedInOut.emit('login');
-            }
-          );
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then(
+        (auth) => {
+          if (auth) {            
+            auth.getIdToken().then(
+              (idToken) => {
+                //let idTokenJwt = this.getJwtHelper().urlBase64Decode(idToken);
+                localStorage.setItem("idToken", idToken);
+                this.getLoggedInOut.emit({ 'code' : 'login' });
+              }
+            );
+          }
         }
-      }
-    );
+      ).catch(
+        (error) => {
+          this.getLoggedInOut.emit(error);
+      })
   }
   
   private executeLogoutProcedures() {
@@ -47,7 +49,7 @@ export class AuthService {
     this.executeLogoutProcedures();
 
     let result = this.afAuth.auth.signOut();
-    this.getLoggedInOut.emit('logout');
+    this.getLoggedInOut.emit({ 'code' : 'logout' });
 
     return result;
   }  

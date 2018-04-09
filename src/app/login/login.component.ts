@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { AuthService, User } from '../auth/auth.service';
 
+import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,8 +14,9 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn : boolean = false;
   user : User = null;
+  isLogging : boolean = false;
 
-  constructor(public authService: AuthService, private router:Router) {
+  constructor(public authService: AuthService, private router:Router, public snackBar: MatSnackBar) {
     console.log('LoginComponent.constructor');
 
     this.isLoggedIn = this.authService.isAuthenticated();
@@ -25,14 +28,27 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.getLoggedInOut.subscribe(
-      (status) => {
-        this.isLoggedIn = this.authService.isAuthenticated();
+      (object) => {
+        this.snackBar.dismiss();
+        this.isLogging = false;
 
-        if (this.isLoggedIn) {
-          this.user = this.authService.getCurrentUser();
+        if (object && (object.code == 'login' || object.code == 'logout')) {
+          this.isLoggedIn = this.authService.isAuthenticated();
+  
+          if (this.isLoggedIn) {
+            console.log(object);
+            this.user = this.authService.getCurrentUser();
+            this.router.navigate(['/']);
+          } else {
+            console.log(object);
+            this.user = null;
+          }
         } else {
-          this.user = null;
-        }        
+          this.snackBar.open(object.message, "DISMISS", {
+            verticalPosition : 'top'
+          });
+          console.log('Auth error: ' + object.code + ' (' + object.message + ')');
+        }
       }
     );
   }
@@ -42,16 +58,8 @@ export class LoginComponent implements OnInit {
 
   login(email, password) {
     console.log('LoginComponent.login');
-    this.authService.loginWithEmailPassword(email, password);
-    console.log('feito o login');
-
-    this.authService.afAuth.authState.subscribe(
-      (auth) => {
-        if (auth != null) {
-          this.router.navigate(['/']);
-        }
-      }
-    );
+    this.isLogging = true;
+    this.authService.loginWithEmailPassword(email, password);          
   }
 
   onSubmit(formData) {

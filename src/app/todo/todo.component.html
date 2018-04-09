@@ -1,4 +1,6 @@
 TODOs
+<mat-progress-spinner *ngIf="isLoadingData" color="Primary" mode="indeterminate">
+</mat-progress-spinner>
 <ul>
   <li class="text" *ngFor="let todo of todos | async">
     {{todo.desc}}
