@@ -1,46 +1,14 @@
-<mat-toolbar class="header-position">
-    <mat-toolbar-row>
-        <span>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-        </span>
-        <span class="example-spacer">HEADER</span>
-        <p *ngIf="isLoggedIn">
-            <button (click)="login()">
-                <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
-                    account_box
-                </mat-icon>
-            </button>
-            <button class="btn btn-default" (click)="logout()">
-                <mat-icon>power_settings_new</mat-icon>
-            </button>
-        </p>
-        <p *ngIf="!isLoggedIn">
-            <button (click)="login()">
-                <mat-icon title="Logged out. Click to Login.">
-                    account_circle
-                </mat-icon>
-            </button>
-        </p>
-    </mat-toolbar-row>
-</mat-toolbar>
+<button mat-icon-button (click)="login()" *ngIf="isLoggedIn">
+    <mat-icon title="Logged In: {{userDisplayName}} ({{userEmail}})">
+        account_box
+    </mat-icon>
+</button>
+<button mat-icon-button (click)="logout()" *ngIf="isLoggedIn">
+    <mat-icon>power_settings_new</mat-icon>
+</button>
 
-<mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="home()">
-        <mat-icon>dialpad</mat-icon>
-        <span>Home</span>
-    </button>
-    <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voicemail</span>
-    </button>
-    <button mat-menu-item (click)="todo()">
-        <mat-icon>notifications_off</mat-icon>
-        <span>TODOs</span>
-    </button>
-    <button mat-menu-item (click)="about()">
-        <mat-icon>notifications_off</mat-icon>
-        <span>About</span>
-    </button>
-</mat-menu>
+<button (click)="login()" *ngIf="!isLoggedIn">
+    <mat-icon title="Logged out. Click to Login.">
+        account_circle
+    </mat-icon>
+</button>
